@@ -1,9 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
-import org.junit.Assert;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
 
 public abstract class Page {
     private final WebDriver driver;
@@ -33,29 +31,31 @@ public abstract class Page {
     }
     public abstract LoginPage goToLoginPage();
 
-    public void assertText(WebElement element, String expectedText) {
+    public void verifyText(WebElement element, String expectedText) {
         try {
             WebElement webElement = waitForElement(element);
             String actualText = webElement.getText();
             assertEquals(expectedText, actualText);
         } catch (Exception e) {
-            Assert.fail("Element not found: " + element);
+            throw new AssertionError("Element not found: " + element, e);
         }
     }
 
-    public void assertColour(WebElement element, String expectedColour) {
+    public void verifyColour(WebElement element, String expectedColour) {
         try {
             WebElement errorElement = waitForElement(element);
             String actualColour = errorElement.getCssValue("color");
             assertEquals(expectedColour, Color.fromString(actualColour).asHex());
         } catch (Exception e) {
-            Assert.fail("Element not found: " + element);
+            throw new AssertionError("Element not found: " + element, e);
         }
     }
+
 
     public <T> T waitUntilPageIsLoaded(Class<T> pageClass, String expectedUrl) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
+
         try {
             Constructor<T> constructor = pageClass.getConstructor(WebDriver.class);
             return constructor.newInstance(driver);
@@ -66,10 +66,8 @@ public abstract class Page {
 
     void checkElementsAreVisible(List<WebElement> elements) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
-
-        for (WebElement element : elements) {
-                assertTrue(element.isDisplayed());
-        }
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+        elements.forEach(element -> assertTrue(element.isDisplayed()));
     }
 
     boolean isElementClickable(WebElement element) {
@@ -86,16 +84,13 @@ public abstract class Page {
     boolean isElementVisible(WebElement element) {
         try {
             return element.isDisplayed();
-        } catch (Exception e) {
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
             return false;
         }
     }
 
-    void verifyInputValue(WebElement inputElement, String value){
-        try {
-            assertTrue(inputElement.getAttribute("value").equalsIgnoreCase(value));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid web element: " + inputElement);
-        }
+    void verifyInputValue(WebElement inputElement, String expectedValue) {
+        String actualValue = inputElement.getAttribute("value");
+        assertEquals(expectedValue.toLowerCase(), actualValue.toLowerCase());
     }
 }

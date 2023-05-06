@@ -74,7 +74,7 @@ public class SignupPage extends Page {
     }
 
     public void checkInputError(String expectedMessage, String expectedColour) {
-        assertText(inputPasswordError, expectedMessage);
-        assertColour(inputPasswordError, expectedColour);
+        verifyText(inputPasswordError, expectedMessage);
+        verifyColour(inputPasswordError, expectedColour);
     }
 }

@@ -57,7 +57,7 @@ public class AccountPage extends Page {
     }
 
     public void checkPageContentText(String expectedText) {
-        assertText(contentText, expectedText);
+        verifyText(contentText, expectedText);
     }
 
     public LoginPage goToLogout() {
