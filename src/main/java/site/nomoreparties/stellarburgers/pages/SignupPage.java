@@ -4,13 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import site.nomoreparties.stellarburgers.pages.components.HeaderMenuComponent;
-
-import java.util.List;
 
 public class SignupPage extends Page {
     private final WebDriver driver;
-    private final HeaderMenuComponent headerMenu;
     @FindBy(xpath = ".//label[text()='Имя']/../input")
     private WebElement usernameInput;
 
@@ -35,7 +31,6 @@ public class SignupPage extends Page {
     public SignupPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        headerMenu = new HeaderMenuComponent(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -81,11 +76,5 @@ public class SignupPage extends Page {
     public void checkInputError(String expectedMessage, String expectedColour) {
         assertText(inputPasswordError, expectedMessage);
         assertColour(inputPasswordError, expectedColour);
-    }
-
-    public void waitUntilSignPagIsLoaded() {
-        List<WebElement> pageElements = List.of(usernameInput, emailInput, passwordInput, submitButton);
-
-        checkElementsAreVisible(pageElements);
     }
 }
