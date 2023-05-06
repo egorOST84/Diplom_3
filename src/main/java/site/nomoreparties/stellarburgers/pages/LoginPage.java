@@ -8,8 +8,6 @@ import site.nomoreparties.stellarburgers.config.AppConfig;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
-
 public class LoginPage extends Page {
     private final WebDriver driver;
     @FindBy(xpath = ".//label[text()='Email']/../input")
