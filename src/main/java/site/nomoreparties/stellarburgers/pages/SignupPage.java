@@ -86,6 +86,6 @@ public class SignupPage extends Page {
     public void waitUntilSignPagIsLoaded() {
         List<WebElement> pageElements = List.of(usernameInput, emailInput, passwordInput, submitButton);
 
-        waitUntilElementsAreVisible(pageElements);
+        checkElementsAreVisible(pageElements);
     }
 }
