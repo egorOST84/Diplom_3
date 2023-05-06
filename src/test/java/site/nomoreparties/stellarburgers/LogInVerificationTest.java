@@ -48,7 +48,7 @@ public class LogInVerificationTest {
     public void checkLoginByAccountLinkInHeaderMenuFromHomePage() {
         // Тест на вход через кнопку "Личный кабинет"
         HomePage.open(driver, AppConfig.BASE_URL)
-                .clickAccountProfileLinkToHeader()
+                .clickOnAccountProfileLink()
                 .signIn(email, password);
     }
 
@@ -56,7 +56,6 @@ public class LogInVerificationTest {
     public void loginFromRegistrationForm() {
         // Тест на вход через кнопку в форме регистрации
         SignupPage.open(driver, AppConfig.SIGNUP_URL)
-                // Логинимся
                 .signIn(email, password);
     }
 
@@ -64,7 +63,6 @@ public class LogInVerificationTest {
     public void loginFromPasswordRecoveryForm() {
         // Тест на вход через кнопку в форме восстановления пароля
         PasswordRecoveryPage.open(driver, AppConfig.RECOVERY_PASSWORD_URL)
-                // Логинимся
                 .signIn(email, password);
     }
 }

@@ -48,8 +48,8 @@ public class SignUpInvalidPasswordTest {
 
     @Test
     public void checkSignUpWithInvalidPasswordLength() {
-        final String name = new RndStr().get(RndConf.NAME, 15);
-        final String email = new RndStr().get(RndConf.EMAIL, 15);
+        String name = new RndStr().get(RndConf.NAME, 15);
+        String email = new RndStr().get(RndConf.EMAIL, 15);
 
         SignupPage.open(driver, AppConfig.SIGNUP_URL)
                 .signUp(name, email, password)

@@ -46,12 +46,11 @@ public class AccountPageNavigationTest {
         HomePage.open(driver, AppConfig.BASE_URL)
                 .signIn(email, password)
                 // Переходим в личный кабинет
-                .clickAccountProfileLinkToHeader()
+                .clickOnAccountProfileLink()
                 // Ждем загрузку страницы профайла
                 .waitUntilPageIsLoaded(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL)
-                .verifyUrl(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL)
                 // Проверяем, что все элементы страницы загрузились и видны
-                .waitUntilAccountPageElementsAreVisible()
+                .checkAccountPageElementsAreVisible()
                 // Проверяем текст на странице
                 .checkPageContentText("В этом разделе вы можете изменить свои персональные данные");
     }

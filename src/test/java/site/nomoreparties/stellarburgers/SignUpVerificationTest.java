@@ -8,6 +8,7 @@ import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.config.RndConf;
 import site.nomoreparties.stellarburgers.config.RndStr;
 import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
+import site.nomoreparties.stellarburgers.pages.AccountPage;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
 import site.nomoreparties.stellarburgers.pages.SignupPage;
 
@@ -37,10 +38,13 @@ public class SignUpVerificationTest {
                 .waitUntilPageIsLoaded(LoginPage.class, AppConfig.LOGIN_URL)
                 // входим в систему
                 .signIn(email, password)
-        // Открываем главную страницу
-        //HomePage.open(driver, AppConfig.BASE_URL)
                 // переходим в личный кабинет и проверяем верность данных
-                .clickAccountProfileLinkToHeader();
-        //TODO AccountPage.open(driver, AppConfig.ACCOUNT_PROFILE_URL).verifyAccountProfileData(name, email);
+                .clickOnAccountProfileLink()
+                // Ждем загрузку страницы профайла
+                .waitUntilPageIsLoaded(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL)
+                // Проверяем, что все элементы страницы загрузились и видны
+                .checkAccountPageElementsAreVisible()
+                // Проверяем имя и логин
+                .verifyAccountProfileData(name, email);
     }
 }

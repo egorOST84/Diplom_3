@@ -43,26 +43,6 @@ public class ConstructorPageNavigationTest {
     }
 
     @Test
-    public void checkNavigationToAccountProfileWorksCorrect() {
-        HomePage.open(driver, AppConfig.BASE_URL)
-                .signIn(email, password)
-                // Переходим в личный кабинет
-                .clickAccountProfileLinkToHeader()
-                // Ждем загрузку страницы профайла
-                .waitUntilPageIsLoaded(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL)
-                .verifyUrl(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL)
-                // Проверяем, что все элементы страницы загрузились и видны
-                .waitUntilAccountPageElementsAreVisible()
-                // Выполняем выход из аккаунта
-                .goToLogout()
-                // Ждем загрузку страницы логина
-                .waitUntilPageIsLoaded(LoginPage.class, AppConfig.LOGIN_URL)
-                .verifyUrl(LoginPage.class, AppConfig.LOGIN_URL)
-                // Проверяем, что все элементы страницы загрузились и видны
-                .checkLoginPageElementsAreVisible();
-    }
-
-    @Test
     public void checkBunsNavigation(){
 
     }
