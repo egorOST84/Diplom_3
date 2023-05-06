@@ -1,13 +1,11 @@
 package site.nomoreparties.stellarburgers.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import site.nomoreparties.stellarburgers.pages.components.HeaderMenuComponent;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AccountPage extends Page {
@@ -52,9 +50,9 @@ public class AccountPage extends Page {
         verifyInputValue(emailInput, login);
     }
 
-    public AccountPage waitUntilAccountPageElementsAreVisible(){
+    public AccountPage checkAccountPageElementsAreVisible(){
         List<WebElement> accountElements = List.of(profileLink, orderHistoryLink, usernameInput, emailInput, passwordInput, submitButton, logoutButton);
-        waitUntilElementsAreVisible(accountElements);
+        checkElementsAreVisible(accountElements);
         return this;
     }
 
