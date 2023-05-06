@@ -37,13 +37,12 @@ public class HomePage extends Page {
         return new LoginPage(driver);
     }
 
-    public Page clickAccountProfileLinkToHeader() {
+    public Page clickOnAccountProfileLink() {
         headerMenu.clickOnAccountProfileLink();
-        return waitUntilPageIsLoaded(AccountPage.class, AppConfig.ACCOUNT_PROFILE_URL);
-    }
-
-    public void waitUntilHomePageElementsAreVisible() {
-        waitUntilElementsAreVisible(List.of(orderButton));
+        if (driver.getCurrentUrl().equals(AppConfig.LOGIN_URL)){
+            return new LoginPage(driver);
+        }
+        return new AccountPage(driver);
     }
 }
 
