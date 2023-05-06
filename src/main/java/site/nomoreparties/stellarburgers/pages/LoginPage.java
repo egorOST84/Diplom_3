@@ -47,14 +47,13 @@ public class LoginPage extends Page {
 
     @Override
     public HomePage signIn(String email, String password){
+        // Вводим логин и пароль в форме логина
         enterEmail(email);
         enterPassword(password);
-        clickSubmitButton()
-        // Ждем пока страница загрузится и переходим на главную страницу
-        .waitUntilPageIsLoaded(HomePage.class, AppConfig.BASE_URL)
-        .verifyUrl(HomePage.class, AppConfig.BASE_URL)
-        // проверяем видимость кнопки заказа на главной странице
-        .waitUntilHomePageElementsAreVisible();
+        // Нажимаем кнопку Войти
+        clickSubmitButton();
+        // Ждем пока загрузится главная страница
+        waitUntilPageIsLoaded(HomePage.class, AppConfig.BASE_URL);
 
         return new HomePage(driver);
     }
@@ -71,7 +70,7 @@ public class LoginPage extends Page {
 
     public void checkLoginPageElementsAreVisible(){
         List<WebElement> loginPageElements = List.of(emailInput, passwordInput, submitButton, signupLink);
-        waitUntilElementsAreVisible(loginPageElements);
+        checkElementsAreVisible(loginPageElements);
     }
 }
 
