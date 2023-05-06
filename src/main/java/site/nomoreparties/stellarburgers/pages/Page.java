@@ -1,6 +1,7 @@
 package site.nomoreparties.stellarburgers.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -63,7 +64,7 @@ public abstract class Page {
         }
     }
 
-    public void checkElementsAreVisible(List<WebElement> elements) {
+    void checkElementsAreVisible(List<WebElement> elements) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
 
         for (WebElement element : elements) {
@@ -71,7 +72,26 @@ public abstract class Page {
         }
     }
 
-    public void verifyInputValue(WebElement inputElement, String value){
+    boolean isElementClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
+
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    boolean isElementVisible(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    void verifyInputValue(WebElement inputElement, String value){
         try {
             assertTrue(inputElement.getAttribute("value").equalsIgnoreCase(value));
         } catch (Exception e) {
