@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.*;
 import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
@@ -12,6 +13,7 @@ public class AccountPageNavigationTest extends BaseTest {
         createUser();
     }
     @Test
+    @DisplayName("Check the correctness of navigating to the account profile page")
     public void checkNavigationToAccountProfileWorksCorrect() {
         HomePage.open(driver, AppConfig.BASE_URL)
                 .signIn(email, password)

@@ -3,6 +3,7 @@ package site.nomoreparties.stellarburgers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import io.qameta.allure.junit4.DisplayName;
 import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.pages.*;
@@ -15,6 +16,7 @@ public class LogInVerificationTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Check login by Login button from the homepage")
     public void checkLoginByLoginButtonFromHomePage() {
         // Тест на вход по кнопке "Войти в аккаунт" на главной странице
         HomePage.open(driver, AppConfig.BASE_URL)
@@ -22,6 +24,7 @@ public class LogInVerificationTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Check login by Account link in header menu from the homepage")
     public void checkLoginByAccountLinkInHeaderMenuFromHomePage() {
         // Тест на вход через кнопку "Личный кабинет"
         HomePage.open(driver, AppConfig.BASE_URL)
@@ -30,6 +33,7 @@ public class LogInVerificationTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Login from registration form")
     public void loginFromRegistrationForm() {
         // Тест на вход через кнопку в форме регистрации
         SignupPage.open(driver, AppConfig.SIGNUP_URL)
@@ -37,6 +41,7 @@ public class LogInVerificationTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Login from password recovery form")
     public void loginFromPasswordRecoveryForm() {
         // Тест на вход через кнопку в форме восстановления пароля
         PasswordRecoveryPage.open(driver, AppConfig.RECOVERY_PASSWORD_URL)
@@ -46,5 +51,4 @@ public class LogInVerificationTest extends BaseTest {
     public void deleteTestUser() {
         deleteUser();
     }
-
 }

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import io.qameta.allure.junit4.DisplayName;
 import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.config.RndConf;
@@ -40,6 +41,7 @@ public class SignUpInvalidPasswordTest extends BaseTest {
     }
 
     @Test
+    //@DisplayName("Check sign up with invalid password length")
     public void checkSignUpWithInvalidPasswordLength() {
         SignupPage.open(driver, AppConfig.SIGNUP_URL)
                 .signUp(name, email, password)

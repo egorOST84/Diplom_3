@@ -3,6 +3,7 @@ package site.nomoreparties.stellarburgers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import io.qameta.allure.junit4.DisplayName;
 import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.config.RndConf;
@@ -17,6 +18,7 @@ public class SignUpVerificationTest extends BaseTest {
         createUser();
     }
     @Test
+    @DisplayName("Check sign up and verify account data")
     public void checkSignUpAndVerifyAccountData() {
         // Генерируем случайные данные для регистрации пользователя
         String name = new RndStr().get(RndConf.NAME, 15);
