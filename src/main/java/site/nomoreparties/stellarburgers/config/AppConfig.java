@@ -6,5 +6,4 @@ public class AppConfig {
     public static final String LOGIN_URL = "https://stellarburgers.nomoreparties.site/login";
     public static final String ACCOUNT_PROFILE_URL = "https://stellarburgers.nomoreparties.site/account/profile";
     public static final String RECOVERY_PASSWORD_URL = "https://stellarburgers.nomoreparties.site/forgot-password";
-
 }

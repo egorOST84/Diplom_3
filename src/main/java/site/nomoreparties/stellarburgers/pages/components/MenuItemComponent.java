@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class MenuItemComponent {
-
     // TODO Этот POM класс зарезервирован под элемент в заказе
     private final WebDriver driver;
     public MenuItemComponent(WebDriver driver) {

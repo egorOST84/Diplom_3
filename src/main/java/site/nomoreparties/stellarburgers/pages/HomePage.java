@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class HomePage extends Page {
     private final WebDriver driver;
-    private HeaderMenuComponent headerMenu;
+    private final HeaderMenuComponent headerMenu;
     public HomePage(WebDriver driver) {
         super(driver);
         this.driver = driver;
@@ -59,8 +59,6 @@ public class HomePage extends Page {
         return new AccountPage(driver);
     }
 
-
-
     public void goToBunsTab() {
         // Переход к разделу "Соусы" так как таю "Булки" некликабельный по умолчанию
         goToSaucesTab();
@@ -91,4 +89,3 @@ public class HomePage extends Page {
         assertTrue(isElementVisible(fillingsSection));
     }
 }
-

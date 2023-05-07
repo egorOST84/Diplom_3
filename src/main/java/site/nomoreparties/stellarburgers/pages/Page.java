@@ -51,7 +51,6 @@ public abstract class Page {
         }
     }
 
-
     public <T> T waitUntilPageIsLoaded(Class<T> pageClass, String expectedUrl) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
         wait.until(ExpectedConditions.urlToBe(expectedUrl));

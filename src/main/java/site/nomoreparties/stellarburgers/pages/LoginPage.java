@@ -71,4 +71,3 @@ public class LoginPage extends Page {
         checkElementsAreVisible(loginPageElements);
     }
 }
-

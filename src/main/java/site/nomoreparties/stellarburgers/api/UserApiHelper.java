@@ -18,7 +18,6 @@ public class UserApiHelper {
     private static final String USER_PATH = "auth/user";
 
     public static String loginUserAndGetToken(String email, String password) {
-
         RestAssured.baseURI = AppConfig.BASE_URL;
         RestAssured.basePath = API_BASE_PATH;
 
@@ -39,7 +38,6 @@ public class UserApiHelper {
     }
 
     public static void createUser(String name, String email, String password) {
-
         RestAssured.baseURI = AppConfig.BASE_URL;
         RestAssured.basePath = API_BASE_PATH;
 
@@ -57,7 +55,6 @@ public class UserApiHelper {
     }
 
     public static void deleteUser(String accessToken) {
-
         RestAssured.baseURI = AppConfig.BASE_URL;
         RestAssured.basePath = API_BASE_PATH;
 
