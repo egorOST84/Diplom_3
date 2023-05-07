@@ -1,16 +1,14 @@
 package site.nomoreparties.stellarburgers;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
+import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.config.RndConf;
 import site.nomoreparties.stellarburgers.config.RndStr;
 import site.nomoreparties.stellarburgers.constants.Colour;
-import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
 import site.nomoreparties.stellarburgers.pages.SignupPage;
 
 import java.util.Collection;
@@ -18,11 +16,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RunWith(Parameterized.class)
-public class SignUpInvalidPasswordTest {
-    private static WebDriver driver;
+public class SignUpInvalidPasswordTest extends BaseTest {
+    @Before
+    public void setupTestUser() {
+        createUser();
+    }
+
     private final String password;
 
     public SignUpInvalidPasswordTest(String description, String password) {
+        super();
         this.password = password;
     }
 
@@ -36,21 +39,8 @@ public class SignUpInvalidPasswordTest {
         ).collect(Collectors.toList());
     }
 
-    @Before
-    public void setup() {
-        driver = WebDriverFactory.get();
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
-    }
-
     @Test
     public void checkSignUpWithInvalidPasswordLength() {
-        String name = new RndStr().get(RndConf.NAME, 15);
-        String email = new RndStr().get(RndConf.EMAIL, 15);
-
         SignupPage.open(driver, AppConfig.SIGNUP_URL)
                 .signUp(name, email, password)
                 .checkInputError("Некорректный пароль", Colour.ERROR_MESSAGE_COLOR);

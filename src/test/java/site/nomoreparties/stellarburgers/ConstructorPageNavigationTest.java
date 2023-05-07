@@ -1,23 +1,11 @@
 package site.nomoreparties.stellarburgers;
 
 import org.junit.*;
-import org.openqa.selenium.WebDriver;
+import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
-import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
 import site.nomoreparties.stellarburgers.pages.HomePage;
 
-public class ConstructorPageNavigationTest {
-    private static WebDriver driver;
-    @Before
-    public void setup() {
-        driver = WebDriverFactory.get();
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
-    }
-
+public class ConstructorPageNavigationTest extends BaseTest {
     @Test
     public void checkBunsNavigation() {
         //Нажали на элемент "Булки" и проверили, что открылась соответствующая страница с булками.

@@ -3,28 +3,19 @@ package site.nomoreparties.stellarburgers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
+import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.config.RndConf;
 import site.nomoreparties.stellarburgers.config.RndStr;
-import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
 import site.nomoreparties.stellarburgers.pages.AccountPage;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
 import site.nomoreparties.stellarburgers.pages.SignupPage;
 
-public class SignUpVerificationTest {
-    private static WebDriver driver;
-
+public class SignUpVerificationTest extends BaseTest {
     @Before
-    public void setup() {
-        driver = WebDriverFactory.get();
+    public void setupTestUser() {
+        createUser();
     }
-
-    @After
-    public void teardown() {
-        driver.quit();
-    }
-
     @Test
     public void checkSignUpAndVerifyAccountData() {
         // Генерируем случайные данные для регистрации пользователя
@@ -46,5 +37,10 @@ public class SignUpVerificationTest {
                 .checkAccountPageElementsAreVisible()
                 // Проверяем имя и логин
                 .verifyAccountProfileData(name, email);
+    }
+
+    @After
+    public void deleteTestUser() {
+        deleteUser();
     }
 }

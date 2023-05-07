@@ -3,38 +3,15 @@ package site.nomoreparties.stellarburgers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import site.nomoreparties.stellarburgers.api.UserApiHelper;
+import site.nomoreparties.stellarburgers.common.BaseTest;
 import site.nomoreparties.stellarburgers.config.AppConfig;
-import site.nomoreparties.stellarburgers.config.RndConf;
-import site.nomoreparties.stellarburgers.config.RndStr;
-import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
 import site.nomoreparties.stellarburgers.pages.*;
 
-public class LogInVerificationTest {
-    private static WebDriver driver;
-    private static String name;
-    private static String email;
-    private static String password;
+public class LogInVerificationTest extends BaseTest {
 
     @Before
-    public void setup() {
-        driver = WebDriverFactory.get();
-
-        // Генерируем случайные данные для регистрации пользователя
-        name = new RndStr().get(RndConf.NAME, 15);
-        email = new RndStr().get(RndConf.EMAIL, 15);
-        password = new RndStr().get(RndConf.PASS, 15);
-        // Создаем пользователя для тестов
-        UserApiHelper.createUser(name, email, password);
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
-
-        String accessToken = UserApiHelper.loginUserAndGetToken(email, password);
-        UserApiHelper.deleteUser(accessToken);
+    public void setupTestUser() {
+        createUser();
     }
 
     @Test
@@ -65,4 +42,9 @@ public class LogInVerificationTest {
         PasswordRecoveryPage.open(driver, AppConfig.RECOVERY_PASSWORD_URL)
                 .signIn(email, password);
     }
+    @After
+    public void deleteTestUser() {
+        deleteUser();
+    }
+
 }
