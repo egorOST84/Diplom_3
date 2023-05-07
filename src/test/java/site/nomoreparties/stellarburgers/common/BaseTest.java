@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.api.UserApiHelper;
 import site.nomoreparties.stellarburgers.config.RndConf;
 import site.nomoreparties.stellarburgers.config.RndStr;
-import site.nomoreparties.stellarburgers.extensions.WebDriverFactory;
+import site.nomoreparties.stellarburgers.ui.driver.WebDriverCreator;
 
 public class BaseTest {
     protected String email;
@@ -16,7 +16,7 @@ public class BaseTest {
     public static WebDriver driver;
     @Before
     public void setup() {
-        driver = WebDriverFactory.get();
+        driver = WebDriverCreator.createWebDriver();
     }
     @After
     public void teardown() {
