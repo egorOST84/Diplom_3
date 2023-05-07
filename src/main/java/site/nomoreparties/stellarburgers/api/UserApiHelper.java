@@ -25,16 +25,13 @@ public class UserApiHelper {
         user.setEmail(email);
         user.setPassword(password);
 
-        String accessToken =
-        given()
+        return given()
                 .contentType(ContentType.JSON)
                 .body(user)
                 .post(LOGIN_PATH)
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract().path("accessToken");
-
-        return accessToken;
     }
 
     public static void createUser(String name, String email, String password) {

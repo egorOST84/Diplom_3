@@ -61,11 +61,6 @@ public class LoginPage extends Page {
         return this;
     }
 
-    public SignupPage goToSignup() {
-        signupLink.click();
-        return new SignupPage(driver);
-    }
-
     public void checkLoginPageElementsAreVisible(){
         List<WebElement> loginPageElements = List.of(emailInput, passwordInput, submitButton, signupLink);
         checkElementsAreVisible(loginPageElements);

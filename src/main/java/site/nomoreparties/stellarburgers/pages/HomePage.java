@@ -12,13 +12,6 @@ import static org.junit.Assert.assertTrue;
 public class HomePage extends Page {
     private final WebDriver driver;
     private final HeaderMenuComponent headerMenu;
-    public HomePage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        headerMenu = new HeaderMenuComponent(driver);
-        PageFactory.initElements(driver, this);
-    }
-
     @FindBy(xpath = ".//button[text()='Войти в аккаунт']")
     private WebElement loginButton;
     @FindBy(xpath = ".//button[text()='Оформить заказ']")
@@ -39,6 +32,13 @@ public class HomePage extends Page {
     private WebElement saucesSection;
     @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[3]")
     private WebElement fillingsSection;
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+        headerMenu = new HeaderMenuComponent(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public static HomePage open(WebDriver driver, String url) {
         driver.get(url);

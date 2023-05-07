@@ -9,7 +9,6 @@ public class PasswordRecoveryPage extends Page {
     private final WebDriver driver;
     @FindBy(xpath = ".//label[text()='Email']/../input")
     private WebElement emailInput;
-
     @FindBy(css = "a[href='/login']")
     private WebElement loginLink;
 

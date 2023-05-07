@@ -1,11 +1,9 @@
 package site.nomoreparties.stellarburgers.pages.components;
 
-import com.beust.ah.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import site.nomoreparties.stellarburgers.pages.AccountPage;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
 import site.nomoreparties.stellarburgers.pages.Page;
 

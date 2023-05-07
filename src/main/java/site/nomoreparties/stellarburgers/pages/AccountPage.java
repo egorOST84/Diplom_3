@@ -4,13 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import site.nomoreparties.stellarburgers.pages.components.HeaderMenuComponent;
 
 import java.util.List;
 
 public class AccountPage extends Page {
     private final WebDriver driver;
-    private HeaderMenuComponent headerMenu;
     @FindBy(css = "a[href='/account/profile']")
     private WebElement profileLink;
     @FindBy(css = "a[href='/account/order-history']")
@@ -31,7 +29,6 @@ public class AccountPage extends Page {
     public AccountPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        headerMenu = new HeaderMenuComponent(driver);
         PageFactory.initElements(driver, this);
     }
 

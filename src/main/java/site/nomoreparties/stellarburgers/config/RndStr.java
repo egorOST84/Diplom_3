@@ -1,6 +1,5 @@
 package site.nomoreparties.stellarburgers.config;
 
-import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class RndStr {

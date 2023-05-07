@@ -9,22 +9,14 @@ public class SignupPage extends Page {
     private final WebDriver driver;
     @FindBy(xpath = ".//label[text()='Имя']/../input")
     private WebElement usernameInput;
-
     @FindBy(xpath = ".//label[text()='Email']/../input")
     private WebElement emailInput;
-
     @FindBy(xpath = ".//label[text()='Пароль']/../input")
     private WebElement passwordInput;
-
     @FindBy(xpath = ".//button[text()='Зарегистрироваться']")
     private WebElement submitButton;
-
     @FindBy(css = "a[href='/login']")
     private WebElement loginLink;
-
-    @FindBy(css = ".input__icon.input__icon-action")
-    private WebElement togglePasswordButton;
-
     @FindBy(css = ".input__error.text_type_main-default")
     private WebElement inputPasswordError;
 
@@ -59,10 +51,6 @@ public class SignupPage extends Page {
 
     public void clickSubmitButton() {
         submitButton.click();
-    }
-
-    public void clickTogglePasswordButton() {
-        togglePasswordButton.click();
     }
 
     public SignupPage signUp(String username, String email,String password){

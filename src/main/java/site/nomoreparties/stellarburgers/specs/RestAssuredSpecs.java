@@ -15,7 +15,6 @@ import static org.hamcrest.Matchers.*;
 
 public class RestAssuredSpecs {
     public static RequestSpecification requestSpec() {
-
         RestAssured.baseURI = AppConfig.BASE_URL;
         RestAssured.basePath = "api/";
 
