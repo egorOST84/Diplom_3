@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,7 @@ public class LoginPage extends Page {
     }
 
     @Override
+    @Step("User authorization")
     public HomePage signIn(String email, String password){
         // Вводим логин и пароль в форме логина
         enterEmail(email);
@@ -61,6 +63,7 @@ public class LoginPage extends Page {
         return this;
     }
 
+    @Step("Checking visibility of elements on login page")
     public void checkLoginPageElementsAreVisible(){
         List<WebElement> loginPageElements = List.of(emailInput, passwordInput, submitButton, signupLink);
         checkElementsAreVisible(loginPageElements);

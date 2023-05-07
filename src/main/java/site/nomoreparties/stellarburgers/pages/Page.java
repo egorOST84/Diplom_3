@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,10 +26,12 @@ public abstract class Page {
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    @Step("User authorization")
     public HomePage signIn(String email, String password) {
         goToLoginPage().signIn(email, password);
         return new HomePage(driver);
     }
+    @Step("Open login page")
     public abstract LoginPage goToLoginPage();
 
     public void verifyText(WebElement element, String expectedText) {
@@ -51,6 +54,7 @@ public abstract class Page {
         }
     }
 
+    @Step("Waiting until page is loaded")
     public <T> T waitUntilPageIsLoaded(Class<T> pageClass, String expectedUrl) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
         wait.until(ExpectedConditions.urlToBe(expectedUrl));

@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,7 @@ public class SignupPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Open Signup page")
     public static SignupPage open(WebDriver driver, String url) {
         driver.get(url);
         return new SignupPage(driver);
@@ -53,6 +55,7 @@ public class SignupPage extends Page {
         submitButton.click();
     }
 
+    @Step("User registration")
     public SignupPage signUp(String username, String email,String password){
         enterUsername(username);
         enterEmail(email);
@@ -61,6 +64,7 @@ public class SignupPage extends Page {
         return this;
     }
 
+    @Step("Checking error message and colour")
     public void checkInputError(String expectedMessage, String expectedColour) {
         verifyText(inputPasswordError, expectedMessage);
         verifyColour(inputPasswordError, expectedColour);

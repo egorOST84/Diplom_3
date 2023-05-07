@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.common;
 
+import io.qameta.allure.Step;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class BaseTest {
         driver.quit();
     }
 
+    @Step("Create random user")
     public void createUser(){
         // Генерируем случайные данные для регистрации пользователя
         name = new RndStr().get(RndConf.NAME, 15);
@@ -30,6 +32,7 @@ public class BaseTest {
         // Создаем пользователя для тестов
         UserApiHelper.createUser(name, email, password);
     }
+    @Step("Delete user")
     public void deleteUser() {
         String accessToken = UserApiHelper.loginUserAndGetToken(email, password);
         UserApiHelper.deleteUser(accessToken);

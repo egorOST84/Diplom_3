@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,21 +43,25 @@ public class AccountPage extends Page {
         return new AccountPage(driver);
     }
 
+    @Step("Verifying user account data")
     public void verifyAccountProfileData(String name, String login){
         verifyInputValue(usernameInput, name);
         verifyInputValue(emailInput, login);
     }
 
+    @Step("Checking visibility of elements on account page")
     public AccountPage checkAccountPageElementsAreVisible(){
         List<WebElement> accountElements = List.of(profileLink, orderHistoryLink, usernameInput, emailInput, passwordInput, submitButton, logoutButton);
         checkElementsAreVisible(accountElements);
         return this;
     }
 
+    @Step("Verifying text to be visible on page")
     public void checkPageContentText(String expectedText) {
         verifyText(contentText, expectedText);
     }
 
+    @Step("User logout")
     public LoginPage goToLogout() {
         logoutButton.click();
         return new LoginPage(driver);

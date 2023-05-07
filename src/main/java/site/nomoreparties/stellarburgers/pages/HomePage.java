@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,17 +41,20 @@ public class HomePage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Open Home page")
     public static HomePage open(WebDriver driver, String url) {
         driver.get(url);
         return new HomePage(driver);
     }
 
     @Override
+    @Step("Open login page")
     public LoginPage goToLoginPage() {
         loginButton.click();
         return new LoginPage(driver);
     }
 
+    @Step("Clicking on account profile link in header")
     public Page clickOnAccountProfileLink() {
         headerMenu.clickOnAccountProfileLink();
         if (driver.getCurrentUrl().equals(AppConfig.LOGIN_URL)){
@@ -59,6 +63,7 @@ public class HomePage extends Page {
         return new AccountPage(driver);
     }
 
+    @Step("Click on bans tab and verify buns section is opened")
     public void goToBunsTab() {
         // Переход к разделу "Соусы" так как таю "Булки" некликабельный по умолчанию
         goToSaucesTab();
@@ -70,6 +75,7 @@ public class HomePage extends Page {
         assertTrue(isElementVisible(bunsSection));
     }
 
+    @Step("Click on sauces tab and verify sauces section is opened")
     public void goToSaucesTab() {
         // Нажимаем на таб "Соусы"
         if(isElementClickable(saucesTab)) {
@@ -80,6 +86,7 @@ public class HomePage extends Page {
 
     }
 
+    @Step("Click on fillings tab and verify fillings section is opened")
     public void goToFillingsTab() {
         // Нажимаем на таб "Начинки"
         if(isElementClickable(fillingsTab)) {
