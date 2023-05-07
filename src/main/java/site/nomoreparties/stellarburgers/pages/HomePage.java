@@ -26,11 +26,11 @@ public class HomePage extends Page {
     private WebElement fillingsTab;
 
     // Секции меню "Соберите бургер"
-    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[1]")
+    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[text()='Булки']")
     private WebElement bunsSection;
-    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[2]")
+    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[text()='Соусы']")
     private WebElement saucesSection;
-    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[3]")
+    @FindBy(xpath = ".//div[@Class='BurgerIngredients_ingredients__menuContainer__Xu3Mo']/h2[text()='Начинки']")
     private WebElement fillingsSection;
 
     public HomePage(WebDriver driver) {
