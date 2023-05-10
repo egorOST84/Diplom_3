@@ -67,7 +67,7 @@ public abstract class Page {
         }
     }
 
-    void checkElementsAreVisible(List<WebElement> elements) {
+    protected void checkElementsAreVisible(List<WebElement> elements) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WebDriverConfig.WAIT_OF_SECONDS_TIMEOUT));
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
         elements.forEach(element -> assertTrue(element.isDisplayed()));
