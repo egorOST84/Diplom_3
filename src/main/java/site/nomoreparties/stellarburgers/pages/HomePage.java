@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import site.nomoreparties.stellarburgers.config.AppConfig;
 import site.nomoreparties.stellarburgers.pages.components.HeaderMenuComponent;
 
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 public class HomePage extends Page {
@@ -17,6 +19,9 @@ public class HomePage extends Page {
     private WebElement loginButton;
     @FindBy(xpath = ".//button[text()='Оформить заказ']")
     private WebElement orderButton;
+    @FindBy(xpath = ".//h1[text()='Соберите бургер']")
+    private WebElement assembleBurgerText;
+
 
     // Элементы меню "Соберите бургер"
     @FindBy(xpath = ".//span[text()='Булки']")
@@ -63,6 +68,18 @@ public class HomePage extends Page {
         return new AccountPage(driver);
     }
 
+    @Step("Clicking on logo link in header")
+    public HomePage clickOnLogoLinkInHeader() {
+        headerMenu.clickOnNavLogoLink();
+        return new HomePage(driver);
+    }
+
+    @Step("Clicking on constructor link in header")
+    public HomePage clickOnConstructorLinkInHeader() {
+        headerMenu.clickOnNavConstructorLink();
+        return new HomePage(driver);
+    }
+
     @Step("Click on bans tab and verify buns section is opened")
     public void goToBunsTab() {
         // Переход к разделу "Соусы" так как таю "Булки" некликабельный по умолчанию
@@ -94,5 +111,18 @@ public class HomePage extends Page {
         }
         // Проверяем, что видна секция с начинками
         assertTrue(isElementVisible(fillingsSection));
+    }
+
+    @Step("Verifying text to be visible on page")
+    public void checkPageContentText(String expectedText) {
+        verifyText(assembleBurgerText, expectedText);
+    }
+
+    @Step("Checking visibility of elements on account page")
+    public HomePage checkHomePageElementsAreVisible(){
+        List<WebElement> accountElements = List.of(loginButton, assembleBurgerText, bunsTab, saucesTab, fillingsTab);
+        checkElementsAreVisible(accountElements);
+        headerMenu.checkHeaderMenuComponentElementsAreVisible();
+        return this;
     }
 }

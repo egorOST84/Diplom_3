@@ -1,11 +1,14 @@
 package site.nomoreparties.stellarburgers.pages.components;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import site.nomoreparties.stellarburgers.pages.LoginPage;
 import site.nomoreparties.stellarburgers.pages.Page;
+
+import java.util.List;
 
 public class HeaderMenuComponent extends Page {
     private final WebDriver driver;
@@ -33,9 +36,24 @@ public class HeaderMenuComponent extends Page {
         accountProfileLink.click();
     }
 
+    public void clickOnNavLogoLink() {
+        navLogoLink.click();
+    }
+
+    public void clickOnNavConstructorLink() {
+        navConstructorLink.click();
+    }
+
     @Override
     public LoginPage goToLoginPage() {
         accountProfileLink.click();
         return new LoginPage(driver);
+    }
+
+    @Step("Checking visibility of elements on account page")
+    public HeaderMenuComponent checkHeaderMenuComponentElementsAreVisible(){
+        List<WebElement> accountElements = List.of(navConstructorLink, navLogoLink, ordersLink, accountProfileLink);
+        checkElementsAreVisible(accountElements);
+        return this;
     }
 }
